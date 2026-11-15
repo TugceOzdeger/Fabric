@@ -16,14 +16,6 @@
 processing_date = ""
 environment = "dev"
 
-# METADATA ********************
-
-# META {
-# META   "tags": [
-# META     "parameters"
-# META   ]
-# META }
-
 # CELL ********************
 
 """

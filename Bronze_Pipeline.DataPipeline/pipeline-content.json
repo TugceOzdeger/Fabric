@@ -2,16 +2,7 @@
   "properties": {
     "activities": [
       {
-        "name": "BronzeIngestion",
         "type": "TridentNotebook",
-        "dependsOn": [],
-        "policy": {
-          "timeout": "0.12:00:00",
-          "retry": 0,
-          "retryIntervalInSeconds": 30,
-          "secureInput": false,
-          "secureOutput": false
-        },
         "typeProperties": {
           "notebookId": "4b56cc48-a862-bf75-46f9-056b48fa125e",
           "workspaceId": "00000000-0000-0000-0000-000000000000",
@@ -31,17 +22,7 @@
               "type": "string"
             }
           }
-        }
-      },
-      {
-        "name": "SilverGoldTransformation",
-        "type": "TridentNotebook",
-        "dependsOn": [
-          {
-            "activity": "BronzeIngestion",
-            "dependencyConditions": ["Succeeded"]
-          }
-        ],
+        },
         "policy": {
           "timeout": "0.12:00:00",
           "retry": 0,
@@ -49,6 +30,11 @@
           "secureInput": false,
           "secureOutput": false
         },
+        "name": "BronzeIngestion",
+        "dependsOn": []
+      },
+      {
+        "type": "TridentNotebook",
         "typeProperties": {
           "notebookId": "fc7eea30-69b7-4baa-b973-bebb280be3fd",
           "workspaceId": "00000000-0000-0000-0000-000000000000",
@@ -68,7 +54,23 @@
               "type": "string"
             }
           }
-        }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "SilverGoldTransformation",
+        "dependsOn": [
+          {
+            "activity": "BronzeIngestion",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
       }
     ],
     "parameters": {
