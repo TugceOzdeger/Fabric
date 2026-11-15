@@ -1,0 +1,43 @@
+ProductID,ProductName,Category,UnitPrice,UnitCost
+P0001,Everyday T-Shirt,Apparel,138.17,75.84
+P0002,Wireless Speaker,Electronics,278.68,151.25
+P0003,Ceramic Mug Set,Home,28.99,11.72
+P0004,Organic Coffee Beans,Grocery,16.71,10.41
+P0005,Yoga Mat,Sports,115.06,65.12
+P0006,Hand Cream,Beauty,24.22,13.16
+P0007,Trail Jacket,Apparel,157.81,91.50
+P0008,USB-C Hub,Electronics,57.00,22.32
+P0009,Cotton Throw,Home,39.08,22.88
+P0010,Herbal Tea Pack,Grocery,10.32,5.78
+P0011,Insulated Flask,Sports,13.72,5.87
+P0012,Botanical Shampoo,Beauty,45.36,21.24
+P0013,Canvas Sneakers,Apparel,96.92,43.78
+P0014,Smart Desk Lamp,Electronics,255.19,134.55
+P0015,Storage Basket,Home,61.51,34.47
+P0016,Olive Oil Bottle,Grocery,11.45,6.47
+P0017,Resistance Band Set,Sports,96.23,44.67
+P0018,Daily Face Moisturizer,Beauty,40.19,19.57
+P0019,Knit Sweater,Apparel,69.54,36.18
+P0020,Noise-Canceling Headphones,Electronics,216.41,133.65
+P0021,Table Runner,Home,78.29,30.27
+P0022,Granola Bag,Grocery,28.26,11.14
+P0023,Training Ball,Sports,28.28,13.74
+P0024,Bath Soak,Beauty,34.55,23.06
+P0025,Denim Trousers,Apparel,106.41,55.07
+P0026,Portable Charger,Electronics,66.36,36.37
+P0027,Glass Water Bottle,Home,71.09,36.41
+P0028,Dark Chocolate Bar,Grocery,16.94,9.32
+P0029,Hiking Daypack,Sports,65.93,26.09
+P0030,Cleansing Bar,Beauty,14.50,8.81
+P0031,Rain Shell,Apparel,78.69,47.11
+P0032,Bluetooth Keyboard,Electronics,291.66,137.00
+P0033,Desk Organizer,Home,45.47,19.06
+P0034,Pasta Box,Grocery,24.47,12.46
+P0035,Cycling Gloves,Sports,120.65,59.22
+P0036,Lip Balm Set,Beauty,23.55,10.19
+P0037,Wool Scarf,Apparel,31.08,12.51
+P0038,Fitness Tracker,Electronics,291.03,165.81
+P0039,Linen Pillowcase,Home,46.60,27.42
+P0040,Honey Jar,Grocery,6.00,3.88
+P0041,Jump Rope,Sports,18.69,9.57
+P0042,Body Lotion,Beauty,14.81,6.36

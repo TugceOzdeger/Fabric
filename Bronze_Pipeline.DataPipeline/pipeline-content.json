@@ -1,5 +1,85 @@
 {
   "properties": {
-    "activities": []
+    "activities": [
+      {
+        "name": "BronzeIngestion",
+        "type": "TridentNotebook",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "typeProperties": {
+          "notebookId": "4b56cc48-a862-bf75-46f9-056b48fa125e",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "parameters": {
+            "processing_date": {
+              "value": {
+                "value": "@pipeline().parameters.processing_date",
+                "type": "Expression"
+              },
+              "type": "string"
+            },
+            "environment": {
+              "value": {
+                "value": "@pipeline().parameters.environment",
+                "type": "Expression"
+              },
+              "type": "string"
+            }
+          }
+        }
+      },
+      {
+        "name": "SilverGoldTransformation",
+        "type": "TridentNotebook",
+        "dependsOn": [
+          {
+            "activity": "BronzeIngestion",
+            "dependencyConditions": ["Succeeded"]
+          }
+        ],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "typeProperties": {
+          "notebookId": "fc7eea30-69b7-4baa-b973-bebb280be3fd",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "parameters": {
+            "processing_date": {
+              "value": {
+                "value": "@pipeline().parameters.processing_date",
+                "type": "Expression"
+              },
+              "type": "string"
+            },
+            "environment": {
+              "value": {
+                "value": "@pipeline().parameters.environment",
+                "type": "Expression"
+              },
+              "type": "string"
+            }
+          }
+        }
+      }
+    ],
+    "parameters": {
+      "processing_date": {
+        "type": "String",
+        "defaultValue": ""
+      },
+      "environment": {
+        "type": "String",
+        "defaultValue": "dev"
+      }
+    }
   }
 }

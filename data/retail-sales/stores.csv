@@ -1,0 +1,9 @@
+StoreID,StoreName,City,Region,StoreType
+S001,Northhaven Urban Store,Northhaven,North,Urban
+S002,Cedarfield Suburban Store,Cedarfield,North,Suburban
+S003,Silverbrook Outlet Store,Silverbrook,East,Outlet
+S004,Maple Crossing Neighborhood Store,Maple Crossing,East,Neighborhood
+S005,Westvale Urban Store,Westvale,West,Urban
+S006,Pine Harbor Suburban Store,Pine Harbor,West,Suburban
+S007,Brightwater Outlet Store,Brightwater,South,Outlet
+S008,Stonebridge Neighborhood Store,Stonebridge,South,Neighborhood

@@ -1,0 +1,121 @@
+CustomerID,CustomerSegment,City,Region,SignupDate
+C0001,Consumer,Westvale,West,2022-01-26
+C0002,Small Business,Meadowridge,South,2023-11-08
+C0003,Consumer,Silverbrook,East,2022-12-27
+C0004,Consumer,Meadowridge,South,2023-04-09
+C0005,Small Business,Meadowridge,South,2022-04-08
+C0006,Consumer,Maple Crossing,East,2023-06-13
+C0007,Consumer,Silverbrook,East,2022-03-22
+C0008,Small Business,Stonebridge,South,2022-06-12
+C0009,Consumer,Meadowridge,South,2023-12-30
+C0010,Consumer,Silverbrook,East,2023-01-09
+C0011,Consumer,Lakewood,Central,2022-06-29
+C0012,Consumer,Redcliff,Central,2023-03-11
+C0013,Small Business,Fairview,Central,2022-11-03
+C0014,Consumer,Pine Harbor,West,2023-09-01
+C0015,Consumer,Pine Harbor,West,2022-03-31
+C0016,Consumer,Cedarfield,North,2022-02-05
+C0017,Consumer,Cedarfield,North,2023-04-01
+C0018,Consumer,Stonebridge,South,2022-12-22
+C0019,Small Business,Cedarfield,North,2022-08-30
+C0020,Small Business,Cedarfield,North,2022-11-13
+C0021,Consumer,Westvale,West,2023-09-18
+C0022,Consumer,Northhaven,North,2022-01-23
+C0023,Consumer,Westvale,West,2023-11-24
+C0024,Consumer,Lakewood,Central,2022-06-04
+C0025,Consumer,Meadowridge,South,2022-06-08
+C0026,Consumer,Lakewood,Central,2023-07-07
+C0027,Consumer,Pine Harbor,West,2023-06-25
+C0028,Consumer,Fairview,Central,2023-04-16
+C0029,Consumer,Westvale,West,2023-07-14
+C0030,Consumer,Lakewood,Central,2023-08-31
+C0031,Consumer,Cedarfield,North,2022-02-27
+C0032,Consumer,Silverbrook,East,2022-05-30
+C0033,Small Business,Fairview,Central,2022-09-24
+C0034,Enterprise,Northhaven,North,2023-03-11
+C0035,Consumer,Westvale,West,2022-07-18
+C0036,Small Business,Northhaven,North,2023-11-21
+C0037,Consumer,Fairview,Central,2022-03-21
+C0038,Consumer,Redcliff,Central,2022-09-12
+C0039,Consumer,Westvale,West,2022-05-21
+C0040,Small Business,Pine Harbor,West,2023-03-24
+C0041,Enterprise,Silverbrook,East,2023-02-17
+C0042,Consumer,Stonebridge,South,2022-01-24
+C0043,Consumer,Cedarfield,North,2022-01-29
+C0044,Consumer,Cedarfield,North,2023-05-23
+C0045,Consumer,Maple Crossing,East,2023-07-04
+C0046,Consumer,Pine Harbor,West,2023-12-03
+C0047,Consumer,Meadowridge,South,2023-09-02
+C0048,Consumer,Westvale,West,2022-01-10
+C0049,Consumer,Cedarfield,North,2023-04-04
+C0050,Consumer,Maple Crossing,East,2022-02-22
+C0051,Consumer,Westvale,West,2023-12-05
+C0052,Consumer,Westvale,West,2023-12-15
+C0053,Small Business,Westvale,West,2022-06-15
+C0054,Small Business,Silverbrook,East,2022-03-25
+C0055,Consumer,Silverbrook,East,2022-10-26
+C0056,Consumer,Maple Crossing,East,2023-05-07
+C0057,Consumer,Northhaven,North,2023-07-10
+C0058,Consumer,Stonebridge,South,2023-08-27
+C0059,Consumer,Fairview,Central,2022-06-15
+C0060,Enterprise,Stonebridge,South,2023-08-10
+C0061,Consumer,Northhaven,North,2022-03-01
+C0062,Consumer,Meadowridge,South,2022-12-04
+C0063,Small Business,Silverbrook,East,2023-01-18
+C0064,Enterprise,Westvale,West,2022-11-12
+C0065,Consumer,Northhaven,North,2022-09-09
+C0066,Enterprise,Meadowridge,South,2023-07-24
+C0067,Small Business,Lakewood,Central,2023-04-18
+C0068,Consumer,Stonebridge,South,2022-12-11
+C0069,Consumer,Meadowridge,South,2023-06-28
+C0070,Small Business,Fairview,Central,2022-06-23
+C0071,Consumer,Brightwater,South,2022-12-20
+C0072,Consumer,Maple Crossing,East,2022-06-18
+C0073,Consumer,Maple Crossing,East,2022-07-31
+C0074,Consumer,Pine Harbor,West,2022-02-19
+C0075,Small Business,Maple Crossing,East,2022-05-30
+C0076,Consumer,Stonebridge,South,2023-07-27
+C0077,Consumer,Redcliff,Central,2022-10-28
+C0078,Consumer,Cedarfield,North,2023-06-28
+C0079,Consumer,Brightwater,South,2023-02-16
+C0080,Consumer,Pine Harbor,West,2023-05-20
+C0081,Consumer,Meadowridge,South,2022-11-28
+C0082,Consumer,Maple Crossing,East,2023-04-02
+C0083,Small Business,Lakewood,Central,2023-12-23
+C0084,Consumer,Silverbrook,East,2023-08-30
+C0085,Consumer,Cedarfield,North,2022-10-28
+C0086,Consumer,Westvale,West,2022-04-30
+C0087,Consumer,Stonebridge,South,2023-01-15
+C0088,Consumer,Pine Harbor,West,2023-12-09
+C0089,Enterprise,Northhaven,North,2022-04-15
+C0090,Consumer,Brightwater,South,2023-10-06
+C0091,Small Business,Northhaven,North,2023-09-07
+C0092,Small Business,Pine Harbor,West,2023-10-30
+C0093,Consumer,Silverbrook,East,2023-01-17
+C0094,Consumer,Pine Harbor,West,2022-06-03
+C0095,Small Business,Fairview,Central,2022-02-12
+C0096,Consumer,Stonebridge,South,2023-11-26
+C0097,Small Business,Meadowridge,South,2022-03-17
+C0098,Small Business,Northhaven,North,2023-06-13
+C0099,Consumer,Lakewood,Central,2022-04-02
+C0100,Consumer,Fairview,Central,2022-02-21
+C0101,Consumer,Brightwater,South,2022-06-13
+C0102,Consumer,Silverbrook,East,2022-11-05
+C0103,Consumer,Stonebridge,South,2022-04-26
+C0104,Consumer,Lakewood,Central,2022-11-10
+C0105,Small Business,Cedarfield,North,2022-07-09
+C0106,Consumer,Westvale,West,2023-07-14
+C0107,Consumer,Redcliff,Central,2023-12-06
+C0108,Small Business,Lakewood,Central,2023-03-09
+C0109,Consumer,Brightwater,South,2022-07-17
+C0110,Consumer,Fairview,Central,2023-11-11
+C0111,Consumer,Redcliff,Central,2023-08-20
+C0112,Consumer,Cedarfield,North,2022-08-22
+C0113,Consumer,Brightwater,South,2022-08-27
+C0114,Consumer,Silverbrook,East,2022-08-04
+C0115,Consumer,Stonebridge,South,2022-05-11
+C0116,Consumer,Lakewood,Central,2022-12-20
+C0117,Small Business,Westvale,West,2022-01-18
+C0118,Consumer,Fairview,Central,2022-08-18
+C0119,Consumer,Maple Crossing,East,2022-07-11
+C0120,Consumer,Stonebridge,South,2022-06-13
