@@ -1,0 +1,13 @@
+{
+  "workspace_id": "0469cb50-a313-4569-8273-f396841183c7",
+  "item_id": "d5cfa2d9-3fe3-45f4-b769-537e7a3e9c42",
+  "json_edits": {
+    "pipeline-content.json": [
+      {
+        "op": "set",
+        "pointer": "/properties/parameters/environment/defaultValue",
+        "value": "staging"
+      }
+    ]
+  }
+}
