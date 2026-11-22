@@ -32,17 +32,32 @@ Bronze snapshot; rerunning the current upsert alone will retain stale rows.
 ## Pipeline activity cannot resolve a notebook or workspace
 
 After deployment, verify the notebook IDs and workspace binding in
-`Bronze_Pipeline.DataPipeline/pipeline-content.json`. Its current
-`workspaceId` is the all-zero GUID; verify that Fabric resolves this as the
-current workspace in the target environment, otherwise bind the actual
-workspace. Reattach the default Lakehouse after item deployment if needed.
+`Bronze_Pipeline.DataPipeline/pipeline-content.json`. The repository definition
+uses the runtime workspace and notebook IDs from the existing pipeline
+definition. Reattach the default Lakehouse after item deployment if needed.
 
 ## Warehouse views return no sales or dimensions
 
-Creating the Warehouse schema and views does not copy Lakehouse data. Load all
-five Gold tables into the matching Warehouse tables, preserving the
-`CustomerKey`, `ProductKey`, `StoreKey`, `DateKey`, and `FactSalesKey` values.
-Refresh from Gold snapshots instead of appending the same snapshot repeatedly.
+Creating the Warehouse schema and views does not copy Lakehouse data. The
+checked-in pipeline copies all five Gold tables into their matching
+`dbo.stg_*` tables, truncating only the staging table before its copy. It
+does not publish the snapshot. After all five copies succeed, run
+`scripts/06_publish_snapshot.sql` manually in the Warehouse SQL query editor,
+then run `scripts/04_validate_model.sql`. The publish script preserves the
+Gold `CustomerKey`, `ProductKey`, `StoreKey`, `DateKey`, and `FactSalesKey`
+values. Do not overlap pipeline runs while sharing the staging tables. If a
+copy cannot resolve a Lakehouse or Warehouse, check that the existing item
+bindings and `Bronze_Warehouse` linked service remain available in the
+workspace. `.platform` logical IDs are Git identities, not runtime item IDs.
+
+## Snapshot publish refuses to run
+
+The publish script intentionally stops when a staging table is empty, contains
+duplicate keys, has invalid sales measures, has inconsistent date attributes,
+or has sales referencing missing staged dimensions. Correct the source or
+mapping, truncate and reload all five staging tables, and retry publication.
+The production Warehouse tables are changed only after every staging check
+passes, and the five-table replacement is transactional.
 
 ## Warehouse validation returns orphan or duplicate rows
 

@@ -4,7 +4,7 @@
 SELECT
     'dim_customer.CustomerKey' AS KeyName,
     CONVERT(varchar(64), CustomerKey) AS KeyValue,
-    COUNT_BIG(*) AS RowCount
+    COUNT_BIG(*) AS Row_Count
 FROM dbo.dim_customer
 GROUP BY CustomerKey
 HAVING CustomerKey IS NULL OR COUNT_BIG(*) > 1
