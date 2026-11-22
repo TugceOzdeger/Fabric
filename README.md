@@ -13,8 +13,9 @@ flowchart LR
     bronze --> lake[Bronze_Lakehouse tables]
     lake --> silver[Silver_Gold Notebook]
     silver --> gold[Silver and Gold Delta tables]
-    gold --> load[Manual Fabric copy to Warehouse]
-    load --> warehouse[Bronze_Warehouse star schema and views]
+    gold --> stage[Copy Gold snapshots to Warehouse staging]
+    stage --> publish[Validate and atomically publish snapshots]
+    publish --> warehouse[Bronze_Warehouse star schema and views]
     pipeline[Bronze_Pipeline] --> bronze
     pipeline --> silver
 ```
@@ -22,8 +23,18 @@ flowchart LR
 `Bronze_Pipeline` runs the two notebooks in order: `BronzeIngestion` writes or
 upserts Bronze Delta tables, then `SilverGoldTransformation` runs only after
 the first activity succeeds. Both notebooks expect `Bronze_Lakehouse` to be
-attached as their default Lakehouse. The pipeline does not load the Warehouse;
-loading the Gold tables into `Bronze_Warehouse` is a separate deployment step.
+attached as their default Lakehouse. The checked-in pipeline runs both
+notebooks, then copies the five Gold tables into Warehouse staging. The Copy
+activities read Lakehouse managed tables and truncate only their matching
+staging table before loading. Publishing and validation remain manual Warehouse
+SQL steps:
+`scripts/06_publish_snapshot.sql`, followed by
+`scripts/04_validate_model.sql`.
+The item IDs and linked-service bindings come from the existing live pipeline
+definition. This repository change does not update or run the live Fabric
+pipeline. The activity graph is validated locally. A Warehouse connection
+suitable for a Fabric Script activity is not established by the current
+pipeline definition, so no Script activities are included.
 
 The Silver/Gold notebook writes cleaned `silver_*` snapshots, rejected rows,
 and Type 1 Gold dimensions and `fact_sales` to the Lakehouse. The Warehouse
@@ -79,21 +90,21 @@ analytics tables are modeled from Gold data.
 2. Upload `data/retail-sales/*.csv` to `Bronze_Lakehouse/Files/retail-sales/`.
 3. In `Bronze_Warehouse`, run the SQL files in this order:
    `scripts/01_dimensions.sql`, `scripts/02_fact_sales.sql`, then each file in
-   `scripts/03_views/`. Use the Warehouse SQL query editor; the deployment
-   scripts are intentionally excluded from the SQL project's DACPAC model
-   build.
-4. Run `Bronze_Pipeline`. It executes Bronze ingestion before Silver/Gold
-   transformation. `processing_date` and `environment` are currently logged
-   as run context; they do not filter data or select a workspace.
-5. Copy the Gold tables `dim_customer`, `dim_product`, `dim_store`, `dim_date`,
-   and `fact_sales` from the Lakehouse into the matching Warehouse tables with
-   a Fabric pipeline copy activity or Dataflow Gen2. Preserve the generated
-   surrogate keys and refresh snapshots rather than appending repeated full
-   snapshots.
-6. Run `Bronze_Warehouse.Warehouse/scripts/04_validate_model.sql`. Resolve
+   `scripts/03_views/`, and `scripts/05_create_snapshot_staging.sql`. Use the
+   Warehouse SQL query editor; deployment scripts are excluded from the SQL
+   project's DACPAC model build.
+4. Run `Bronze_Pipeline`. It executes Bronze ingestion, Silver/Gold
+   transformation, then five Gold-to-staging copies. `processing_date` and
+   `environment` are logged as run context; they do not filter data or select
+   a workspace.
+5. After all five copies succeed, run
+   `Bronze_Warehouse.Warehouse/scripts/06_publish_snapshot.sql` in the
+   Warehouse SQL query editor, followed by
+   `Bronze_Warehouse.Warehouse/scripts/04_validate_model.sql`. Resolve any
    returned rows before using the views. Fabric Warehouse PK/FK/UNIQUE
    constraints are `NOT ENFORCED`, so they do not replace these data checks.
 
 See the [Warehouse data dictionary and deployment notes](Bronze_Warehouse.Warehouse/README.md)
 for table grains, columns, key formats, and view definitions. The Fabric
-Warehouse was not accessed or changed while preparing this repository work.
+pipeline definition was inspected read-only; no live Fabric items were
+changed.

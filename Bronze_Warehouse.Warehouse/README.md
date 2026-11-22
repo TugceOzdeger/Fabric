@@ -16,21 +16,50 @@ dimension and fact names and SHA-256 surrogate-key columns produced by
    `CREATE OR ALTER VIEW` batch and can be rerun to update that view.
 4. Copy the CSVs in `data/retail-sales/` to the attached Lakehouse's
    `Files/retail-sales/` folder, then run `Bronze_Notebook` and
-   `Silver_Gold_Notebook` to ingest and transform the sample data. Use a Fabric
-   pipeline copy activity or Dataflow Gen2 to load the Gold tables
-   (`dim_customer`, `dim_product`,
-   `dim_store`, `dim_date`, and `fact_sales`) into the matching Warehouse
-   tables. Map columns by name, preserve the Gold surrogate keys, and refresh
-   from the Gold snapshots rather than appending repeated snapshots.
-5. After loading, run `scripts/04_validate_model.sql`; resolve returned rows,
-   then query the views. The Warehouse constraints below are metadata only;
-   they do not reject invalid or duplicate rows.
+   `Silver_Gold_Notebook` to ingest and transform the sample data.
+5. Run `scripts/05_create_snapshot_staging.sql`.
+6. Run `Bronze_Pipeline`. The checked-in pipeline reads `dim_customer`,
+   `dim_product`, `dim_store`, `dim_date`, and `fact_sales` from the attached
+   Lakehouse, then copies each into its matching `dbo.stg_*` table. Each
+   Warehouse Copy activity runs `TRUNCATE TABLE dbo.stg_<table>;` before its
+   load; the target dimensional tables are not truncated by the Copy
+   activities. The five copies run only after successful Silver/Gold
+   transformation. Serialize pipeline runs while the shared staging tables
+   are in use.
+7. After all five copies succeed, run `scripts/06_publish_snapshot.sql` in
+   the Warehouse SQL query editor. It rejects empty or invalid staging
+   snapshots, then replaces all five Warehouse tables in one Warehouse
+   transaction. A failure before commit rolls back the target replacement.
+   Run `scripts/04_validate_model.sql` afterward; inspect its result sets and
+   resolve any returned rows before querying the views. The Warehouse
+   constraints below are metadata only; they do not reject invalid or
+   duplicate rows.
+
+The repository pipeline uses the workspace, Lakehouse, Warehouse, and notebook
+runtime IDs observed in the existing live pipeline. Its Copy activity
+definitions use managed Lakehouse tables and existing Warehouse staging
+tables. The `Bronze_Warehouse` linked service and its organizational-account
+authentication must remain available in the target workspace. The existing
+pipeline definition does not establish a connection binding for a Script
+activity, so publishing and validation SQL remain manual until a supported
+Fabric Warehouse Script connection is configured and verified.
+See Microsoft's
+[Lakehouse Copy activity configuration](https://learn.microsoft.com/en-us/fabric/data-factory/connector-lakehouse-copy-activity)
+and [Warehouse Copy activity configuration](https://learn.microsoft.com/en-us/fabric/data-factory/connector-data-warehouse-copy-activity),
+plus the [Script activity](https://learn.microsoft.com/en-us/fabric/data-factory/script-activity)
+documentation.
 
 The scripts create missing tables and constraints without dropping or
 rebuilding existing objects. They do not migrate an existing table whose
 columns differ from this model. Review and migrate any conflicting objects
 before deployment. The warehouse was not connected to or modified while
 preparing these scripts.
+
+The staging and publish scripts are standalone Warehouse deployment scripts,
+like the model scripts; they are excluded from the SQL project's DACPAC model
+build. The publish script uses a single explicit transaction so readers see
+either the previous or the new five-table Gold snapshot, not an intermediate
+mix of old and new dimension/fact data.
 
 ## Model and grain
 
